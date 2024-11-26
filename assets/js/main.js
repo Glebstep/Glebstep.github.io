@@ -201,4 +201,38 @@
 
   });
 
+    /**
+   * Light/Dark Mode Toggle Functionality
+   */
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleButton = document.getElementById("mode-toggle");
+      const body = document.body;
+  
+      // Check for saved mode in local storage
+      const currentMode = localStorage.getItem("theme");
+      if (currentMode) {
+        body.classList.add(currentMode);
+      }
+  
+      // Update button text based on current mode
+      toggleButton.textContent = body.classList.contains("light-mode")
+        ? "Switch to Dark Mode"
+        : "Switch to Light Mode";
+  
+      // Toggle theme on button click
+      toggleButton.addEventListener("click", function () {
+        if (body.classList.contains("light-mode")) {
+          body.classList.remove("light-mode");
+          body.classList.add("dark-mode");
+          toggleButton.textContent = "Switch to Light Mode";
+          localStorage.setItem("theme", "dark-mode");
+        } else {
+          body.classList.remove("dark-mode");
+          body.classList.add("light-mode");
+          toggleButton.textContent = "Switch to Dark Mode";
+          localStorage.setItem("theme", "light-mode");
+        }
+      });
+    });
+
 })();
