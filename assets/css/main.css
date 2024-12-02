@@ -80,8 +80,11 @@ body.light-mode {
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
 body {
+  background-image: url('assets/img/black_back_img.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: var(--default-color);
-  background-color: var(--background-color);
   font-family: var(--default-font);
 }
 
@@ -460,8 +463,8 @@ h6 {
 /*Inserted Toggle Button Styling */
 .light-dark-toggle {
   position: fixed;
-  top: 20px; /* Move to the top */
-  right: 20px; /* Keep it on the right */
+  bottom: 5px; /* Move to the top */
+  left : 10px; /* Keep it on the right */
   z-index: 1000;
 }
 
@@ -484,7 +487,7 @@ h6 {
 --------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background-color: #000000;
   font-size: 14px;
   text-align: center;
   padding: 30px 0;
