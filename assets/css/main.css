@@ -738,6 +738,19 @@ section,
   justify-content: center;
 }
 
+.clock {
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 20px;
+  color:#007bff;
+  text-align: center;
+  padding: 10px 20px;
+  background: linear-gradient(90deg,#2596be,#1a1a1a);
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0,0,0, 0.3);
+  display: inline-block;
+}
+
 .hero img {
   position: absolute;
   inset: 0;
