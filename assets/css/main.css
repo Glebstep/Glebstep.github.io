@@ -739,17 +739,20 @@ section,
 }
 
 .clock {
+  position: fixed;
+  bottom: 70px; /* Отступ в 30px от нижнего края */
+  left: 30px;   /* Отступ в 30px от левого края */
   font-size: 36px;
   font-weight: bold;
-  margin-top: 20px;
-  color:#007bff;
-  text-align: center;
+  color: #007bff;
   padding: 10px 20px;
-  background: linear-gradient(90deg,#2596be,#1a1a1a);
+  background: linear-gradient(90deg, #2596be, #1a1a1a);
   border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0,0,0, 0.3);
-  display: inline-block;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 9999; /* Убедимся, что элемент всегда сверху */
 }
+
+
 
 .hero img {
   position: absolute;

@@ -235,23 +235,28 @@
       });
     });
 
-    function getCurrentTime() {
+// Функция для получения текущего времени
+     function getCurrentTime() {
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2 , '0');
-      const seconds = String(now.getSeconds()).padStart(2,'0');
-      return '${hours}:${minutes}:${seconds}';
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      return `${hours}:${minutes}:${seconds}`;
     }
 
+// Функция для обновления времени на странице
     function updateClock() {
       const clockElement = document.getElementById('clock');
-      if (clockElement){
-        clockELement.textContent = getCurrentTime();
-        }
-      }
+      if (clockElement) {
+      clockElement.textContent = getCurrentTime();
+    }
+  }
 
-    setInterval(updateClock,1000);
+// Запуск обновления времени каждую секунду
+    setInterval(updateClock, 1000);
 
+// Начальная установка времени
     updateClock();
+
 
 })();
