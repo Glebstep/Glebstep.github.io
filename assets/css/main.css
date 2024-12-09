@@ -663,7 +663,7 @@ h6 {
   content: "/";
   display: inline-block;
   padding-right: 10px;
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
+  color: #000000; 
 }
 
 /*--------------------------------------------------------------
@@ -1533,4 +1533,24 @@ section,
 
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+/* Стили для черного текста и логотипа */
+.header.scrolled {
+  background-color: #ffffff; /* Белый фон */
+  color: #000000; /* Черный текст */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+.header.scrolled .navmenu a {
+  color: #000000; /* Черный текст для ссылок */
+}
+
+.header.scrolled .navmenu a:hover,
+.header.scrolled .navmenu .active {
+  color: #2596be; /* Синий цвет для ссылок при наведении */
+}
+
+.header.scrolled .logo h1 {
+  color: #000000; /* Черный цвет логотипа */
 }

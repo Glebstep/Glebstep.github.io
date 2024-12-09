@@ -258,5 +258,21 @@
 // Начальная установка времени
     updateClock();
 
+    document.addEventListener("DOMContentLoaded", function () {
+      const header = document.querySelector("#header");
+      const contactSection = document.querySelector(".contact");
+    
+      window.addEventListener("scroll", function () {
+        const sectionTop = contactSection.offsetTop;
+        const scrollPosition = window.scrollY;
+    
+        if (scrollPosition > sectionTop) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+    });
+     
 
 })();
