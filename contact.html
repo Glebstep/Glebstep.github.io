@@ -9,7 +9,7 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="assets/img/porsch_favicon — копия.png" rel="icon">
+  <link href="assets/img/porsch_favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -77,6 +77,13 @@
 
     .form-group button:hover {
       background: #0056b3;
+    }
+
+    #average-result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
     }
   </style>
 </head>
@@ -153,13 +160,13 @@
               <button type="button" id="saveButton">Submit</button>
             </div>
           </form>
+          <div id="average-result"></div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <script src="assets/js/main.js"></script>
   <script>
     document.getElementById("saveButton").addEventListener("click", function () {
       const formData = {
@@ -177,15 +184,41 @@
         ]
       };
 
+      // Validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^[0-9\-\+\s]{7,15}$/;
+
+      if (!emailRegex.test(formData.email)) {
+        alert("Invalid email format");
+        return;
+      }
+
+      if (!phoneRegex.test(formData.phone)) {
+        alert("Invalid phone number format");
+        return;
+      }
+
+      const addressConcatenated = formData.address.replace(/\s+/g, " ");
+      formData.address = addressConcatenated;
+
       const average =
         formData.numericAttributes.reduce((a, b) => a + b, 0) /
         formData.numericAttributes.length;
 
+      const averageResult = document.getElementById("average-result");
+      averageResult.textContent = `Average Result: ${average.toFixed(2)}`;
+
+      if (average < 50) {
+        averageResult.style.color = "red";
+      } else if (average >= 50 && average < 80) {
+        averageResult.style.color = "orange";
+      } else {
+        averageResult.style.color = "green";
+      }
+
       console.log(
         `${formData.name} ${formData.surname} (${formData.email}): ${average.toFixed(2)}`
       );
-
-      alert("Form submitted! Check the console for details.");
     });
   </script>
 </body>

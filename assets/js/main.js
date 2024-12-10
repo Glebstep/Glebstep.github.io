@@ -259,20 +259,82 @@
     updateClock();
 
     document.addEventListener("DOMContentLoaded", function () {
-      const header = document.querySelector("#header");
-      const contactSection = document.querySelector(".contact");
+      const form = document.getElementById("contact-form");
+      const resultContainer = document.getElementById("average-result");
+      
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
     
-      window.addEventListener("scroll", function () {
-        const sectionTop = contactSection.offsetTop;
-        const scrollPosition = window.scrollY;
+        // Получаем значения полей
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const address1 = document.getElementById("address1").value.trim();
+        const address2 = document.getElementById("address2").value.trim();
+        const numericFields = [
+          parseFloat(document.getElementById("num1").value.trim()),
+          parseFloat(document.getElementById("num2").value.trim()),
+          parseFloat(document.getElementById("num3").value.trim()),
+          parseFloat(document.getElementById("num4").value.trim()),
+          parseFloat(document.getElementById("num5").value.trim()),
+        ];
     
-        if (scrollPosition > sectionTop) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
+        // Проверяем email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert("Invalid email address!");
+          return;
         }
+    
+        // Проверяем телефон
+        const phoneRegex = /^[0-9]{8,}$/;
+        if (!phoneRegex.test(phone)) {
+          alert("Invalid phone number! Must contain at least 8 digits.");
+          return;
+        }
+    
+        // Проверяем адрес
+        if (!address1 || !address2) {
+          alert("Address fields cannot be empty!");
+          return;
+        }
+    
+        // Объединяем адрес
+        const fullAddress = `${address1}, ${address2}`;
+    
+        // Проверяем числовые значения
+        if (numericFields.some(isNaN)) {
+          alert("All numeric fields must be filled with valid numbers!");
+          return;
+        }
+    
+        // Вычисляем среднее значение
+        const average = numericFields.reduce((sum, val) => sum + val, 0) / numericFields.length;
+    
+        // Задаем цвет текста на основе среднего
+        if (average < 50) {
+          resultContainer.style.color = "red";
+        } else if (average >= 50 && average <= 70) {
+          resultContainer.style.color = "orange";
+        } else {
+          resultContainer.style.color = "green";
+        }
+    
+        // Выводим среднее значение
+        resultContainer.textContent = `Average Result: ${average.toFixed(2)}`;
+    
+        // Логируем объект с данными
+        console.log({
+          email,
+          phone,
+          fullAddress,
+          numericFields,
+          average,
+        });
+    
+        alert("Form submitted successfully!");
       });
     });
+    
      
 
 })();
