@@ -197,7 +197,20 @@
         alert("Invalid phone number format");
         return;
       }
+      
+          // Check if any numeric value exceeds 100
+    if (numericFields.some(value => value > 100)) {
+      alert("All numeric values must be 100 or less!");
+      return;
+    }
 
+    // Check if numeric values are valid
+    if (numericFields.some(isNaN)) {
+      alert("All numeric fields must be filled with valid numbers!");
+      return;
+    }
+
+    
       const addressConcatenated = formData.address.replace(/\s+/g, " ");
       formData.address = addressConcatenated;
 
