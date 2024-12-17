@@ -149,31 +149,42 @@
                   <mo stretchy="false">)</mo><!-- Closing parenthesis -->
                   <mo>=</mo><!-- Equals sign -->
                   <mfrac><!-- Creates a fraction -->
-                    <mn>1</mn><!-- Numerator of the fraction -->
-                    <mrow><!-- Groups denominator components -->
-                      <mn>2</mn> <!-- Constant '2' -->
-                      <mi>&#x3C0;</mi><!-- Unicode symbol for 'pi' -->
+                    <msup>
+                      <mrow>
+                        <mo stretchy="false">(</mo>
+                        <mn>1</mn>
+                        <mo stretchy="false">)</mo>
+                      </mrow>
+                      <mrow>
+                        <mn>2</mn>
+                        <mi>e</mi>
+                      </mrow>
+                    </msup>
+                    <mrow><!-- Denominator group -->
+                      <mn>2</mn>
+                      <mi>&#x3C0;</mi><!-- Pi -->
                       <mi>i</mi><!-- Imaginary unit 'i' -->
                     </mrow>
                   </mfrac>
-                  <mo>&#x222E;</mo> <!-- Unicode symbol for contour integral -->
-                  <mfrac><!-- Another fraction -->
-                    <mrow><!-- Numerator group -->
-                      <mi>f</mi><!-- Function 'f' -->
-                      <mo stretchy="false">(</mo><!-- Opening parenthesis -->
-                      <mi>z</mi><!-- Variable 'z' -->
-                      <mo stretchy="false">)</mo><!-- Closing parenthesis -->
+                  <mo>&#x222E;</mo> <!-- Contour integral -->
+                  <mfrac>
+                    <mrow>
+                      <mi>f</mi>
+                      <mo stretchy="false">(</mo>
+                      <mi>z</mi>
+                      <mo stretchy="false">)</mo>
                     </mrow>
-                    <mrow> <!-- Denominator group -->
-                      <mi>z</mi><!-- Variable 'z' -->
-                      <mo>-</mo><!-- Minus sign -->
-                      <mi>a</mi><!-- Variable 'a' -->
+                    <mrow>
+                      <mi>z</mi>
+                      <mo>-</mo>
+                      <mi>a</mi>
                     </mrow>
                   </mfrac>
-                  <mi>d</mi><!-- Differential 'd' -->
-                  <mi>z</mi><!-- Variable 'z' -->
+                  <mi>d</mi>
+                  <mi>z</mi>
                 </mrow>
               </math>
+              
 
               <h3>Mathematical Example using MathJax library:</h3>
                <!-- Trigger MathJax to render content -->
@@ -190,7 +201,7 @@
                   <!-- Круг -->
                   <circle cx="100" cy="100" r="80" stroke="blue" stroke-width="4" fill="lightblue" />
                   <!-- Квадрат в центре круга -->
-                  <rect x="60" y="60" width="80" height="80" stroke="red" stroke-width="4" fill="yellow" />
+                  <rect x="60" y="60" width="90" height="90" stroke="red" stroke-width="4" fill="yellow" />
                   <polygon points="100,70 70,130 130,130" stroke="green" stroke-width="3" fill="lightgreen" />
                 </svg>
               </div>
