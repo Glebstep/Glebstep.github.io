@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -27,6 +26,7 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <!-- Custom Inline Styles -->
   <style>
     .contact-form-container {
       margin: 50px auto;
@@ -89,7 +89,6 @@
 </head>
 
 <body class="contact-page">
-
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
@@ -110,130 +109,79 @@
   </header>
 
   <main class="main">
-
     <section id="contact" class="contact section">
       <div class="container">
         <div class="contact-form-container">
           <h1>Contact Form</h1>
-          <form id="contactForm">
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="text" id="name" placeholder="Enter your name" required>
-            </div>
-            <div class="form-group">
-              <label for="surname">Surname:</label>
-              <input type="text" id="surname" placeholder="Enter your surname" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="email" id="email" placeholder="Enter your email" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone:</label>
-              <input type="tel" id="phone" placeholder="Enter your phone number" required>
-            </div>
-            <div class="form-group">
-              <label for="address">Address:</label>
-              <input type="text" id="address" placeholder="Enter your address" required>
-            </div>
-            <div class="form-group">
-              <label for="num1">Numeric Attribute 1:</label>
-              <input type="number" id="num1" required>
-            </div>
-            <div class="form-group">
-              <label for="num2">Numeric Attribute 2:</label>
-              <input type="number" id="num2" required>
-            </div>
-            <div class="form-group">
-              <label for="num3">Numeric Attribute 3:</label>
-              <input type="number" id="num3" required>
-            </div>
-            <div class="form-group">
-              <label for="num4">Numeric Attribute 4:</label>
-              <input type="number" id="num4" required>
-            </div>
-            <div class="form-group">
-              <label for="num5">Numeric Attribute 5:</label>
-              <input type="number" id="num5" required>
-            </div>
-            <div class="form-group">
-              <button type="button" id="saveButton">Submit</button>
-            </div>
+          <form id="contactForm" novalidate>
+            <div class="form-group"><label>Name:</label><input type="text" id="name" required></div>
+            <div class="form-group"><label>Surname:</label><input type="text" id="surname" required></div>
+            <div class="form-group"><label>Email:</label><input type="text" id="email" required></div>
+            <div class="form-group"><label>Phone:</label><input type="text" id="phone" required></div>
+            <div class="form-group"><label>Address:</label><input type="text" id="address" required></div>
+            <div class="form-group"><label>Numeric Attribute 1:</label><input type="number" id="num1" required></div>
+            <div class="form-group"><label>Numeric Attribute 2:</label><input type="number" id="num2" required></div>
+            <div class="form-group"><label>Numeric Attribute 3:</label><input type="number" id="num3" required></div>
+            <div class="form-group"><label>Numeric Attribute 4:</label><input type="number" id="num4" required></div>
+            <div class="form-group"><label>Numeric Attribute 5:</label><input type="number" id="num5" required></div>
+            <div class="form-group"><button type="submit">Submit</button></div>
           </form>
           <div id="average-result"></div>
         </div>
       </div>
     </section>
-
   </main>
 
+  <!-- JavaScript -->
   <script>
-    document.getElementById("saveButton").addEventListener("click", function () {
-      const formData = {
-        name: document.getElementById("name").value,
-        surname: document.getElementById("surname").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        address: document.getElementById("address").value,
-        numericAttributes: [
-          parseFloat(document.getElementById("num1").value),
-          parseFloat(document.getElementById("num2").value),
-          parseFloat(document.getElementById("num3").value),
-          parseFloat(document.getElementById("num4").value),
-          parseFloat(document.getElementById("num5").value),
-        ]
-      };
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
 
-      // Validation
+      const name = document.getElementById("name").value.trim();
+      const surname = document.getElementById("surname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const address = document.getElementById("address").value.trim();
+
+      const numericFields = [
+        parseFloat(document.getElementById("num1").value),
+        parseFloat(document.getElementById("num2").value),
+        parseFloat(document.getElementById("num3").value),
+        parseFloat(document.getElementById("num4").value),
+        parseFloat(document.getElementById("num5").value),
+      ];
+
+      // Валидация email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const phoneRegex = /^[0-9\-\+\s]{7,15}$/;
-
-      if (!emailRegex.test(formData.email)) {
-        alert("Invalid email format");
+      if (!emailRegex.test(email)) {
+        alert("Invalid email format! Please include '@' and a valid domain, e.g., user@example.com.");
         return;
       }
 
-      if (!phoneRegex.test(formData.phone)) {
-        alert("Invalid phone number format");
+      // Валидация телефона
+      const phoneRegex = /^\+[0-9]{11}$/;
+      if (!phoneRegex.test(phone)) {
+        alert("Invalid phone number format! The format must be '+12345678912' (a '+' followed by exactly 11 digits).");
         return;
       }
-      
-          // Check if any numeric value exceeds 100
-    if (numericFields.some(value => value > 100)) {
-      alert("All numeric values must be 100 or less!");
-      return;
-    }
 
-    // Check if numeric values are valid
-    if (numericFields.some(isNaN)) {
-      alert("All numeric fields must be filled with valid numbers!");
-      return;
-    }
-
-    
-      const addressConcatenated = formData.address.replace(/\s+/g, " ");
-      formData.address = addressConcatenated;
-
-      const average =
-        formData.numericAttributes.reduce((a, b) => a + b, 0) /
-        formData.numericAttributes.length;
-
-      const averageResult = document.getElementById("average-result");
-      averageResult.textContent = `Average Result: ${average.toFixed(2)}`;
-
-      if (average < 50) {
-        averageResult.style.color = "red";
-      } else if (average >= 50 && average < 80) {
-        averageResult.style.color = "orange";
-      } else {
-        averageResult.style.color = "green";
+      // Проверка числовых значений
+      if (numericFields.some(value => isNaN(value) || value > 100 || value < 0)) {
+        alert("All numeric values must be between 0 and 100!");
+        return;
       }
 
-      console.log(
-        `${formData.name} ${formData.surname} (${formData.email}): ${average.toFixed(2)}`
-      );
+      // Вычисление среднего значения
+      const average = numericFields.reduce((sum, val) => sum + val, 0) / numericFields.length;
+
+      // Отображение результата с цветовой индикацией
+      const resultContainer = document.getElementById("average-result");
+      resultContainer.textContent = `Average Result: ${average.toFixed(2)}`;
+      resultContainer.style.color = average < 50 ? "red" : average <= 70 ? "orange" : "green";
+
+      console.log({ name, surname, email, phone, address, numericFields, average });
+      alert("Form submitted successfully!");
     });
   </script>
 </body>
-
 </html>
